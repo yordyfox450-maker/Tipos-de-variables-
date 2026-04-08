@@ -1,0 +1,24 @@
+#sumar datos por el usuario 
+num1 = float(input("Ingresa el primer numero:" ))
+num2 = float(input("Ingresa el segundo numero:" ))
+suma = num1 + num2
+print("la suma es :", suma)
+
+#restar datos por el usuario
+num3= float(input("ingresa el teercer numero: "))
+num4= float(input("ingresa el cuarto numero: "))
+resta = num3 - num4
+print("la resta es :", resta)
+
+#multiplicar datos por el usuario
+num5= float(input("ingresa el quinto numero: "))
+num6= float(input("ingresa el sexto numero: "))
+multiplicacion = num5 * num6
+print("la multiplicacion es :", multiplicacion)
+
+#dividir datos por el usuario
+num7= float(input("ingresa el septimo numero: "))
+num8= float(input("ingresa el octavo numero: "))
+division = num7 / num8
+print("la division es :", division)
+

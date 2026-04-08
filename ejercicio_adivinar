@@ -1,0 +1,14 @@
+#Algoritmo para determinar en que año nacio el usuario segun su edad 
+
+nombre = input("Ingresa tu nombre: ")
+edad = int(input("Ingresa tu edad: "))
+
+#pedir al usuario el año actual
+año_actual = int(input("Ingresa el año actual: "))
+
+#calcular el año de nacimiento
+año_nacimiento = año_actual - edad
+año_nacimiento2 = año_actual - edad - 1
+
+#mostrar el resultado
+print(f"{nombre}, tu año de nacimiento es: {año_nacimiento} o {año_nacimiento2}")
