@@ -1,0 +1,35 @@
+# Sistema de cobro en el parque
+# Desafío de la estatura: además de la edad, se valida la altura en ciertos casos
+
+# Se solicita al usuario ingresar la edad del visitante
+edad = int(input("Ingrese la edad del visitante: "))
+
+# Validación inicial: si la edad es menor que 0 o mayor que 120, no es válida
+if edad < 0 or edad > 120:
+    print("Valor inválido")
+    
+#1: menores de 3 años entran gratis
+elif edad < 3:
+    print("Entra gratis")
+
+# 2: niños entre 3 y 12 años pagan $8.000
+elif edad >= 3 and edad <= 12:
+    print("Paga $8.000")
+    print("Entrada de niño")
+
+#3: adultos entre 13 y 60 años pagan $15.000
+elif edad >= 13 and edad <= 60:
+    print("Paga $15.000")
+    print("Entrada de adulto")
+    
+    # Desafío de la estatura: se pide la altura en metros
+    estatura = float(input("Ingrese su estatura en metros: "))
+    
+    # Si mide menos de 1.40m, se muestra un aviso adicional
+    if estatura < 1.40:
+        print("Puedes entrar, pero no tienes acceso a las montañas rusas")
+
+# 4: adultos mayores (más de 60 hasta 120) pagan $10.000
+elif edad > 60 and edad <= 120:
+    print("Paga $10.000")
+    print("Entrada de adulto mayor")
