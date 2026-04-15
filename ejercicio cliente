@@ -1,0 +1,20 @@
+#program que solisita datos de un cliente 
+
+ID_cliente = int(input("Ingrese el ID del cliente: "))
+nombre_cliente = input("Ingrese el nombre del cliente: ")
+numero_de_telefono = input("Ingrese el número de teléfono del cliente: ")
+activo = input("¿El cliente está activo? (sí/no): ")
+edad = int(input("Ingrese la edad del cliente: "))
+tiene_cedula = (True if edad >= 18 else False  and input("¿El cliente tiene cédula? (sí/no): ") == "sí" if edad == 18 else True)
+numero_identificacion = input("Ingrese el número de identificación del cliente: ") if tiene_cedula else "no tiene cédula"
+
+print("\nInformación del cliente:")
+print(f"ID: {ID_cliente}")
+print(f"Nombre: {nombre_cliente}")
+print(f"Teléfono: {numero_de_telefono}")
+print(f"Activo: {'Sí' if activo.lower() == 'sí' else 'No'}")
+print(f"Edad: {edad}")
+print(f"Tiene cédula: {'Sí' if tiene_cedula else 'No'}")
+print(f"Número de identificación: {numero_identificacion}")
+
+    
