@@ -1,0 +1,22 @@
+# Sistema de evaluación de estudiante
+nota = float(input("Ingrese la nota del estudiante: "))
+
+if nota < 0 or nota > 5:
+     print("Valor inválido")
+elif nota >= 3.0:
+    if nota == 3.0:
+        print("Pasa raspando")
+        print("Casi no puedes")
+    else:
+        print("Aprueba")
+        print("¡Muy bien hecho, sí pudiste!")
+elif nota >= 2.0:
+    print("Recuperación")
+    print("Debe realizar actividad adicional")
+    print("Mejor suerte para la próxima")
+else:
+    print("Pierde")
+    print("Debe realizar actividad adicional")
+    print("Mejor suerte para la próxima")
+
+
