@@ -1,0 +1,37 @@
+# Sistema de categorización de productos
+print("=" * 45)
+print(" SISTEMA DE CATEGORIZACIÓN DE PRODUCTOS ")
+print("=" * 45)
+
+# Entrada de datos
+nombre = input("Ingrese el nombre del producto: ")
+precio = float(input("Ingrese el precio del producto: "))
+
+# Clasificación y descuento
+if precio <= 10000:
+    categoria = "Económico"
+    descuento = 0
+elif precio <= 50000:
+    categoria = "Estándar"
+    descuento = 0.05
+elif precio <= 200000:
+    categoria = "Premium"
+    descuento = 0.10
+else:
+    categoria = "De Lujo"
+    descuento = 0.15
+
+#Calculo del precio final
+descuento = precio * descuento
+precio_final = precio - descuento
+
+# Salida  resultados
+print("-" * 45)
+print("\n--- RESULTADO ---")
+print(f"Producto: {nombre}")
+print(f"Precio original: ${precio:,.2f}")
+print(f"Categoría: {categoria}")
+print(f"Descuento aplicado: {descuento * 100:.0f}%")
+print(f"Precio final: ${precio_final:,.2f}")
+print("-" * 45)
+print("Gracias por usar el sistema de categorización.")
