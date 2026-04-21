@@ -1,0 +1,97 @@
+#Sistema de registro de notas elaborado 
+#explicado para que cada cosa sirve 
+
+#Para hacerlo mas estetico a la hora de sañlir el sultado 
+print('='*50)
+print('   SISTEMA DE REGISTRO DE NOTAS ')
+print('='*50)
+
+#Se pide la cantidad de estudiantes 
+n= int(input('¿Cuantos estudiantes tiene el grupo? '))
+
+
+#Iniciamoes el acumulador para dar el resultado de las notas
+total = 0               #Suma de todas las notas, esta en 0 por que no se han ingresado notas        
+aprobados = 0           #Contador de notas >= 6, esta en 0 por que no se han ingresado notas
+reprobados = 0          #Contador de notas < 6, esta en 0 por que no se han ingresado notas
+nota_maxima =-1         #se usa -1 por que es un valor menor al posible, Así la primera nota válida que se ingrese siempre será mayor y reemplazará ese valor inicial.       
+nota_minima = 11        #se usa 11 por que es un valor mayor al posible, Así la primera nota válida que se ingrese siempre será menor y reemplazará ese valor inicial.
+perfectos = 0           #Se comienza en 0  por que al inicio ningun estudiante tiene nota perfecta
+
+#Ciclo para ingresar las notas de cada estudiante
+for i in range(1, n + 1):                          #El ciclo for se utiliza porque sabemos exactamente cuántos estudiantes hay en el grupo (n).
+ print(f'\n--- Estudiante {i} de {n} ---')         #La variable i toma cada uno de esos valores en cada iteración, representando el número del estudiante que se está procesando.
+                                                   #range(1, n + 1) genera una secuencia de números desde 1 hasta n (el +1 es necesario porque range en Python excluye el último valor).
+                                                   #print(f'\n--- Estudiante {i} de {n} ---') 
+                                                   # Se usa una f-string (cadena con formato) para mostrar un mensaje dinámico.
+                                                   # i indica el número del estudiante actual.
+                                                   # n indica el total de estudiantes del grupo.
+                                                   #El \n al inicio agrega un salto de línea para separar visualmente cada estudiante.
+
+#Validar que la nota sea un numero valido dentro del rengo puesto 
+ nota_texto = input('Ingresa la nota (0 a 10): ')  #Se pide ingresar la nota,El valor ingresado se guarda como texto (string), porque input() siempre devuelve cadenas. 
+if not nota_texto.replace('.', '', 1).isdigit():   #Aquí se reemplaza un solo punto decimal (.) por vacío ('').
+                                                    #Esto se hace porque las notas pueden ser números decimales (eje:. 7.5
+                                                    #Si no quitáramos el punto, el método .isdigit() fallaría, ya que considera el punto como un carácter no numérico.
+                                                    #El not invierte el resultado lógico, por lo que si el texto no es un número válido, se ejecutará el bloque de código dentro del if.
+                                                    #En otras palabras: si lo ingresado no es un número válido, se registra como 0.
+    print('Nota inválida. Se registra como 0.')
+    nota = 0.0
+else:
+    nota = float(nota_texto)                        #Si el texto es un número válido, se convierte a un número decimal (float) para su posterior procesamiento.
+
+#Validar que la nota esté en rango
+if nota < 0 or nota > 10:                           #Aquí se verifica si la nota es menor que 0 o mayor que 10, lo cual sería un valor fuera del rango permitido.
+    print('Nota fuera de rango. Se registra como 0.')
+    nota = 0.0                                       #Si la nota está fuera de rango, se asigna un valor predeterminado de 0.0.
+
+
+#Acumular la nota para calcular el promedio después del ciclo
+total += nota                                         #Aquí se suma la nota ingresada al acumulador total, que se usará para calcular el promedio al final del ciclo. 
+
+#Contar aprobados y reprobados
+if nota >= 6:                                          #Si la nota es mayor o igual a 6, se considera aprobada.
+    aprobados += 1                                     #Se incrementa el contador de aprobados en 1.
+    print(f'Nota {nota}  ✅APROBADO')                  #Se muestra un mensaje indicando que la nota es aprobada.
+else:                                                   #Si la nota es menor que 6, se considera reprobada.
+    reprobados += 1                                     #Se incrementa el contador de reprobados en 1.
+    print(f'Nota {nota}  ❌REPROBADO')                  #Se muestra un mensaje indicando que la nota es reprobada.
+
+# Actualizar nota máxima y mínima
+if nota > nota_maxima:                                  #Si la nota ingresada es mayor que la nota máxima registrada hasta el momento, se actualiza la nota máxima.
+    nota_maxima = nota
+if nota < nota_minima:                                  #Si la nota ingresada es menor que la nota mínima registrada hasta el momento, se actualiza la nota mínima.
+    nota_minima = nota  
+
+# Contar notas perfectas
+if nota == 10:                                           #Si la nota ingresada es exactamente 10, se considera una nota perfecta.
+    perfectos += 1                                        #Se incrementa el contador de notas perfectas en 1 por cada nota de 10.
+
+# FUERA del ciclo: aquí ya tenemos todas las notas ingresadas y procesadas
+# Ahora podemos calcular el promedio y mostrar los resultados finales.
+promedio = total / n                                     #El promedio se calcula dividiendo el total acumulado de notas entre la cantidad de estudiantes (n).
+
+print('\n' + '='*45)                                      #Se imprime una línea de separación para mejorar la presentación de los resultados.
+print(' RESULTADOS DEL GRUPO')                                #Se muestra un título para los resultados del grupo.
+print('-'* 45)                                              #Otra línea de separación.  
+
+
+print(f' Total de estudiantes: {n}')                          #Se muestra el total de estudiantes ingresados.
+print(f' Promedio del grupo: {promedio:.2f}')                 #Se muestra el promedio del grupo, formateado a dos decimales.
+print(f' Aprobados : {aprobados}')                            #Se muestra la cantidad de estudiantes aprobados.
+                                                        #f' ... {promedio:.2f} ... ' Es una f-string en Python, que permite incrustar variables dentro de un texto y además darles formato.
+                                                        #:.2f  Especifica el formato numérico que queremos mostrar:
+                                                        #f → significa que el número se mostrará como decimal (float).
+                                                        #.2 → indica que se mostrarán exactamente 2 cifras decimales.
+print(f' Reprobados : {reprobados}')                                #Se muestra la cantidad de  estudiantes reprobados.
+print(f' Nota más alta: {nota_maxima}')                                #Se muestra la nota más  alta registrada.
+print(f' Nota más baja: {nota_minima}')                                #Se muestra la nota más baja registrada.
+print(f' Estudiantes con nota perfecta (10): {perfectos}')              #Se muestra la cantidad de estudiantes que obtuvieron una nota perfecta (10).
+
+#Evaluar desempeño del grupo
+if promedio >= 6:                                          #Si el promedio del grupo es mayor o igual a 6, se considera que el grupo aprobó el período.
+    print('\n El grupo APROBÓ el período👌.')              #Se muestra un mensaje indicando que el grupo aprobó.  
+else:                                                   #Si el promedio del grupo es menor que 6, se considera que el grupo reprobó el período.
+    print('\n El grupo REPROBÓ el período😥.')             #Se muestra un mensaje indicando que el grupo reprobó.
+
+print('='*45)                                              #Se imprime una línea de separación al final de los resultados para cerrar la presentación.
