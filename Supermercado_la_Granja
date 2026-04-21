@@ -1,0 +1,62 @@
+# Reto Final: Sistema de registro de compras en el supermercado "La Economía"
+
+# Ciclo principal: se repite hasta que el cajero decida cerrar la caja
+while True:
+    # Preguntamos si se desea registrar la compra de un cliente
+    opcion = input("¿Desea registrar la compra de un cliente? (S/N): ").strip().upper()
+    
+    # Condición de salida: si el cajero escribe 'N', se termina el programa
+    if opcion == "N":
+        print("\nCaja cerrada. Fin del turno.")
+        break
+    
+    # Si la opción es distinta de 'S', se ignora y vuelve a preguntar
+    if opcion != "S":
+        print("Opción inválida. Escriba 'S' para sí o 'N' para no.")
+        continue
+    
+    # Entrada de datos: número de productos en el carrito
+    try:
+        num_productos = int(input("¿Cuántos productos lleva el cliente?: "))
+    except ValueError:
+        print("Error: debe ingresar un número entero. Se asumirá 0 productos.")
+        num_productos = 0
+    
+    # Inicializamos acumuladores para este cliente
+    total_cliente = 0
+    precio_max = 0
+    precios = []  # lista para calcular promedio
+    
+    # Ciclo de productos (for)
+    for i in range(1, num_productos + 1):
+        try:
+            precio = float(input(f"Ingrese el precio del producto {i}: "))
+            # Validación: si el precio es negativo, se marca como 0
+            if precio < 0:
+                print("Error: precio negativo. Se registrará como $0.")
+                precio = 0
+        except ValueError:
+            # Si el cajero ingresa texto, se marca como 0
+            print("Error: entrada inválida. Se registrará como $0.")
+            precio = 0
+        
+        # Acumulamos datos
+        total_cliente += precio
+        precios.append(precio)
+        
+        # Verificamos si es el producto más caro
+        if precio > precio_max:
+            precio_max = precio
+    
+    # Cálculos finales por cliente
+    if num_productos > 0:
+        promedio = total_cliente / num_productos
+    else:
+        promedio = 0
+    
+    # Mostrar resultados del cliente
+    print("\n--- Resumen de la compra ---")
+    print(f"Total a pagar: ${total_cliente:.2f}")
+    print(f"Producto más caro: ${precio_max:.2f}")
+    print(f"Promedio por producto: ${promedio:.2f}")
+    print("-----------------------------\n")
